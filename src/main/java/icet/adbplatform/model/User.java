@@ -45,6 +45,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LibraryBook> libraryBooks;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role != null ? List.of(new SimpleGrantedAuthority(role.name())) : List.of();

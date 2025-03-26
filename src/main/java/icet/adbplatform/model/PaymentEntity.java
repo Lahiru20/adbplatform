@@ -24,7 +24,7 @@ public class PaymentEntity {
     private String userId;
 
     @Column(name = "amount", nullable = false)
-    private double amount;
+    private Double amount;
 
     @Column(name = "memo")
     private String memo;

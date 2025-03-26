@@ -92,7 +92,7 @@ public class AudioBookService {
         Optional<AudioBook> audioBookOptional = audioBookRepository.findById(id);
         if (audioBookOptional.isPresent()) {
             AudioBook audioBook = audioBookOptional.get();
-            audioBook.setDisabled(true);
+            audioBook.setIsDisabled(true);
             audioBookRepository.save(audioBook);
         } else {
             throw new RuntimeException("Audiobook not found with id");

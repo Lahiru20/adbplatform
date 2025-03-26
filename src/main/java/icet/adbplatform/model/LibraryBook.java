@@ -1,11 +1,7 @@
 package icet.adbplatform.model;
 import java.util.Map;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,23 +12,30 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "librarybooks")
-public class Library {
+public class LibraryBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "audiobook", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "audiobook_id", nullable = false)
     private AudioBook audioBook;
 
     @Column(name = "is_purchased", nullable = false)
-    private boolean isPurchased;
+    private Boolean isPurchased;
 
     @Column(name = "is_wishlisted", nullable = false)
     private Boolean isWishlisted;
-    
-    @Column(name = "chapter_progress", nullable = false)
-    private Map<AudioBook, String> chapterProgress;
 
+    @ElementCollection
+    @CollectionTable(name = "chapter_progress", joinColumns = @JoinColumn(name = "librarybook_id"))
+    @MapKeyJoinColumn(name = "audiobook_id")
+    @Column(name = "progress")
+    private Map<AudioBook, String> chapterProgress;
 }

@@ -20,11 +20,18 @@ public class AudioBookChapter {
     private String title;
 
     @Column(name = "duration", nullable = false)
-    private int duration;
+    private String duration;
 
     @Column(name = "audio_url", nullable = false)
     private String audioUrl;
 
+    @Column(name = "progress", nullable = false)
+    private Double progress;
+
     @Column(name = "chapter_number", nullable = false)
-    private int chapterNumber;
+    private Integer chapterNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "audiobook_id", nullable = false)
+    private AudioBook audioBook;
 }

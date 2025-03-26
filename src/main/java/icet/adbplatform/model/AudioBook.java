@@ -30,30 +30,27 @@ public class AudioBook {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "chapters", nullable = false)
+    @OneToMany(mappedBy = "audioBook", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AudioBookChapter> chapters;
 
     @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private Double price;
 
     @Column(name = "rating")
-    private int rating;
+    private Integer rating;
 
     @Column(name = "number_of_ratings")
-    private int numberOfRatings;
+    private Integer numberOfRatings;
 
     @Column(name = "number_of_purchases")
-    private int numberOfPurchases;
+    private Integer numberOfPurchases;
 
     @Column(name = "number_of_listeners")
-    private int numberOfListeners;
-
-    @Column(name = "is_purchased")
-    private boolean isPurchased;
+    private Integer numberOfListeners;
 
     @Column(name = "is_disabled")
-    private boolean isDisabled;
+    private Boolean isDisabled;
 }
