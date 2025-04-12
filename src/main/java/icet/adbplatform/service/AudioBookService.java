@@ -24,23 +24,19 @@ public class AudioBookService {
     }
 
     public List<AudioBook> getMostRatedAudioBooks() {
-        // Implement logic to get most rated audio books
-        return audioBookRepository.findAll(); 
+        return audioBookRepository.findTop10ByOrderByRatingDesc();
     }
 
     public List<AudioBook> getMostRecentAudioBooks() {
-        // Implement logic to get most recent audio books
-        return audioBookRepository.findAll(); 
+        return audioBookRepository.findTop10ByOrderByIdDesc();
     }
 
     public List<AudioBook> getMostPopularAudioBooks() {
-        // Implement logic to get most popular audio books
-        return audioBookRepository.findAll(); 
+        return audioBookRepository.findTop10ByOrderByNumberOfListenersDesc();
     }
 
     public List<AudioBook> getMostPurchasedAudioBooks() {
-        // Implement logic to get most purchased audio books
-        return audioBookRepository.findAll(); 
+        return audioBookRepository.findTop10ByOrderByNumberOfPurchasesDesc();
     }
 
     public int getAudioBookPurchaseCount(Long id) {

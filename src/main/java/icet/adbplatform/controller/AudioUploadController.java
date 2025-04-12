@@ -18,7 +18,7 @@ public class AudioUploadController {
     private final AudioUploadService audioUploadService;
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadAudio(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadAudio(@RequestParam("file") MultipartFile file) throws Exception {
         try {
             String audioUrl = audioUploadService.uploadAudio(file);
             return ResponseEntity.ok(audioUrl);

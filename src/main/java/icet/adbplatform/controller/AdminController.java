@@ -40,4 +40,6 @@ public class AdminController {
     public Notification addNotification(@PathVariable Long id, @RequestBody Notification notification) {
         return userSettingsService.addNotification(id, notification);
     }
+
+
 }
